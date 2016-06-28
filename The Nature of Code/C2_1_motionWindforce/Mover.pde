@@ -14,6 +14,7 @@ class Mover {
     v = new PVector(0, 0);
     a = new PVector(0, 0);
     buoyance = new PVector(0, -0.1);
+    
     topspeed = 5;
     
     tx = random(1000);
@@ -21,16 +22,11 @@ class Mover {
   }
 
   void update() {
-    wf_x = map(noise(tx), 0,1,-1,1);
-    wf_y = map(noise(ty), 0,1,-1,1);
-    windforce = new PVector(wf_x, wf_y);
     applyForce(buoyance);
     v.add(a);
     v.limit(topspeed);
     loc.add(v);
     a.mult(0);
-    tx += 0.1;
-    ty += 0.1;
   }
 
   void display() {
@@ -64,5 +60,19 @@ class Mover {
       v.y = v.y*-1; 
       v.mult(0.9);
     }
+  }
+  
+  void checkPress(){
+    wf_x = map(noise(tx), 0,1,-1,1);
+    wf_y = map(noise(ty), 0,1,-1,1);
+    
+    windforce = new PVector(wf_x, wf_y);
+    
+    if(mousePressed){
+    mover.applyForce(windforce);
+    }
+    
+    tx += 0.1;
+    ty += 0.1;
   }
 }

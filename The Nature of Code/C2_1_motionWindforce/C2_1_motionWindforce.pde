@@ -8,9 +8,7 @@ void setup(){
 
 void draw(){
   background(255);
-  if(mousePressed){
-    mover.applyForce(windforce);
-  }
+  mover.checkPress();
   mover.update();
   mover.bounce();
   mover.display();
