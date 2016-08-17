@@ -56,7 +56,7 @@ class Mover {
     distance = constrain(distance, 5.0, 25.0);
     force.normalize();
 
-    float strength = (G*mass*mass)/(distance*distance);
+    float strength = (G*mass*m.mass)/(distance*distance);
     force.mult(strength);
     return force;
   }
